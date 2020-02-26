@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.headingColor {
+  color: #666699;
+}
+
+.formContainer {
+  margin: auto;
+  width: 440px;
+  padding: 30px;
+}
+
+.formFields {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.matIconStyle {
+  margin-right: 20px;
+  color: #666699;
+}
