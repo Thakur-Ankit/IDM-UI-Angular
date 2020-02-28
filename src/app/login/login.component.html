@@ -1,6 +1,6 @@
 <div class="container">
   <div class="formContainer">
-    <form>
+    <form [formGroup]="loginForm">
       <mat-card>
         <h1 class="headingColor">Login</h1>
         <mat-card-content>
@@ -8,7 +8,7 @@
             <mat-label>Username</mat-label>
             <mat-form-field class="formFields" floatLabel="never">
               <mat-icon matPrefix class="matIconStyle">email</mat-icon>
-              <input type="text" matInput placeholder="Enter Username">
+              <input type="text" matInput placeholder="Enter Username" formControlName="username">
             </mat-form-field>
           </div>
 
@@ -16,12 +16,12 @@
             <mat-label>Password</mat-label>
             <mat-form-field class="formFields" floatLabel="never">
               <mat-icon matPrefix class="matIconStyle">lock</mat-icon>
-              <input type="password" matInput placeholder="Enter Password">
+              <input type="password" matInput placeholder="Enter Password" formControlName="password">
             </mat-form-field>
           </div>
 
           <div class="row formFields">
-            <button type="submit" mat-raised-button color="primary">Log In</button>
+            <button type="submit" mat-raised-button color="primary" (click)="loginUser()">Log In</button>
           </div>
         </mat-card-content>
       </mat-card>
