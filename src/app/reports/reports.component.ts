@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ReportService} from '../services/report.service';
 
 @Component({
   selector: 'app-reports',
@@ -7,9 +8,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportsComponent implements OnInit {
 
-  constructor() { }
+  private reportData = {
+    eligibleVisitors: null,
+    returningVisitors: null,
+    totalSent: null,
+    totalSpent: null,
+    totalCost: null
+  };
+
+  constructor(private reportService: ReportService) {
+  }
 
   ngOnInit() {
+    this.fetchReportSummary();
+    this.fetchReportGraph();
+  }
+
+  fetchReportSummary() {
+    this.reportService.fetchSummaryData()
+      .subscribe(
+        response => {
+          this.reportData.eligibleVisitors = response.totalVisit;
+          this.reportData.returningVisitors = response.totalReturningVisits;
+          this.reportData.totalSent = response.totalSent;
+          this.reportData.totalSpent = response.totalSpent;
+          this.reportData.totalCost = response.totalCost;
+        },
+        error => console.log('Error fetching report summary', error)
+      );
+  }
+
+  fetchReportGraph() {
+    this.reportService.fetchGraphData()
+      .subscribe(
+        response => {
+          console.log('Report graph fetched successfully!');
+        },
+        error => console.log('Error fetching report graph', error)
+      );
   }
 
 }
