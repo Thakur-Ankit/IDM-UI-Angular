@@ -1,0 +1,40 @@
+<div style="width: 100%;">
+  <div class="row mat-elevation-z5">
+    <mat-toolbar class="headerToolbar" style="padding: 20px;">
+      <div class="page-container">
+        <div class="float-left">
+          <a style="display: inline;"><img class="headerLogo" src="../assets/img/logo.png"></a>
+        </div>
+        <div class="float-right" style="color: #fff; margin-top: 10px;">
+          <span style="margin-right: 20px;">test@upsnap.com</span>
+          <a style="display: inline;">
+            <button mat-button *ngIf="authService.loggedIn()" (click)="authService.logoutUser()">Logout</button>
+          </a>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+  <div class="row mat-elevation-z5">
+    <mat-toolbar class="navBar">
+      <div class="page-container">
+        <div class="float-left" style="color: #fff;">
+          <a style="margin-right: 20px;">
+            <button mat-button>Users</button>
+          </a>
+          <a style="margin-right: 20px;">
+            <button mat-button>Agencies</button>
+          </a>
+          <a style="margin-right: 20px;">
+            <button mat-button>Advertisers</button>
+          </a>
+          <a style="margin-right: 20px;">
+            <button mat-button>Campaigns</button>
+          </a>
+          <a style="margin-right: 20px;">
+            <button mat-button>Reports</button>
+          </a>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+.headerToolbar {
+  top: 0;
+  z-index: 1000;
+  background-color: #666699;
+}
+
+.navBar {
+  top: 64px;
+  z-index: 1000;
+  height: 55px;
+  background-color: #8d6899;
+}
+
+.page-container {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.headerLogo {
+  vertical-align: top;
+  cursor: pointer;
+  height: 55px;
+}

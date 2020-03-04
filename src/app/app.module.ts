@@ -11,12 +11,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptorService} from './token-interceptor.service';
 import {AuthGuard} from './auth.guard';
+import {HeaderComponent} from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ReportsComponent
+    ReportsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
