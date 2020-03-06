@@ -1,5 +1,6 @@
 .container {
   margin-top: 25px;
+  margin-bottom: 70px;
   background-color: white;
 }
 
@@ -19,3 +20,58 @@
   background-color: white;
   color: #666699;
 }
+
+#SummaryTable {
+  table-layout: fixed;
+  width: 100%;
+}
+
+#SummaryTable tr.mat-header-row, #SummaryTable tr.mat-footer-row, #SummaryTable tr.mat-row {
+  height: 35px;
+}
+
+#SummaryTable th, #SummaryTable td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.hideExtra {
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mat-cell {
+  font-size: 12px;
+}
+
+.mat-column-id {
+  width: 15%;
+}
+
+.mat-column-name {
+  width: 20%;
+}
+
+.mat-column-email {
+  width: 30%;
+}
+
+.mat-column-role {
+  width: 15%;
+}
+
+.mat-column-status {
+  width: 15%;
+}
+
+.mat-column-edit {
+  width: 5%;
+}
+
+
+
+
+
+
