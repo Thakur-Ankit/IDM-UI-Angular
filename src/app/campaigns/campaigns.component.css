@@ -15,26 +15,6 @@
   margin: 0 auto;
 }
 
-.panelBorder {
-  border: 1px solid #666699;
-}
-
-.headingStyle {
-  background-color: #666699;
-  padding: 2px;
-}
-
-.headTitleStyle {
-  color: #ffffff;
-  margin-left: 5px;
-  font-size: 16px;
-}
-
-.pannelBodyStyle {
-  padding: 15px;
-  color: #8d6899
-}
-
 .activeNav {
   background-color: white;
   color: #666699;

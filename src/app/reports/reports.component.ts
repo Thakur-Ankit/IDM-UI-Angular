@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ReportService} from '../services/report.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-reports',
@@ -16,7 +17,7 @@ export class ReportsComponent implements OnInit {
     totalCost: null
   };
 
-  constructor(private reportService: ReportService) {
+  constructor(private reportService: ReportService, private router: Router) {
   }
 
   ngOnInit() {
@@ -46,6 +47,10 @@ export class ReportsComponent implements OnInit {
         },
         error => console.log('Error fetching report graph', error)
       );
+  }
+
+  navigate(location: string) {
+    this.router.navigate([location]);
   }
 
 }

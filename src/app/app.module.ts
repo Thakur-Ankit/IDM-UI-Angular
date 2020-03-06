@@ -12,13 +12,21 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptorService} from './token-interceptor.service';
 import {AuthGuard} from './auth.guard';
 import {HeaderComponent} from './header/header.component';
+import { UsersComponent } from './users/users.component';
+import { AgenciesComponent } from './agencies/agencies.component';
+import { AdvertisersComponent } from './advertisers/advertisers.component';
+import { CampaignsComponent } from './campaigns/campaigns.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ReportsComponent,
-    HeaderComponent
+    HeaderComponent,
+    UsersComponent,
+    AgenciesComponent,
+    AdvertisersComponent,
+    CampaignsComponent
   ],
   imports: [
     BrowserModule,

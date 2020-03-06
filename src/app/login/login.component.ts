@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/reports']);
       }, err => {
         console.log(err);
+        throw err;
       });
   }
 }
