@@ -19,3 +19,88 @@
   background-color: white;
   color: #666699;
 }
+
+#SummaryTable {
+  table-layout: fixed;
+  width: 100%;
+}
+
+#SummaryTable tr.mat-header-row, #SummaryTable tr.mat-footer-row, #SummaryTable tr.mat-row {
+  height: 35px;
+}
+
+#SummaryTable th, #SummaryTable td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.hideExtra {
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.newUserBtn {
+  background-color: #666699;
+  color: #fff;
+  float: right;
+  font-size: 12px;
+}
+
+.dataRow {
+  border: 1px solid #666699;
+}
+
+.userDetailToolBar {
+  background-color: #666699;
+  height: 35px;
+}
+
+.userDetail {
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.tableHeader {
+  background-color: #666699;
+  color: white;
+}
+
+.editIcon {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.mat-cell {
+  font-size: 12px;
+}
+
+.mat-column-name {
+  width: 25%;
+}
+
+.mat-column-product {
+  width: 6%;
+}
+
+.mat-column-status {
+  width: 6%;
+}
+
+.mat-column-eligibleVisitors {
+  text-align: center;
+}
+
+.mat-column-returningVisitors {
+  text-align: center;
+}
+
+.mat-column-totalMailersSent {
+  text-align: center;
+}
+
+.mat-column-edit {
+  width: 5%;
+}

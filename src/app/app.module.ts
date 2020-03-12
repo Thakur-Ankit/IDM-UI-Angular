@@ -12,10 +12,11 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptorService} from './token-interceptor.service';
 import {AuthGuard} from './auth.guard';
 import {HeaderComponent} from './header/header.component';
-import { UsersComponent } from './users/users.component';
-import { AgenciesComponent } from './agencies/agencies.component';
-import { AdvertisersComponent } from './advertisers/advertisers.component';
-import { CampaignsComponent } from './campaigns/campaigns.component';
+import {UsersComponent} from './users/users.component';
+import {AgenciesComponent} from './agencies/agencies.component';
+import {AdvertisersComponent} from './advertisers/advertisers.component';
+import {CampaignsComponent} from './campaigns/campaigns.component';
+import {MatTooltipModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CampaignsComponent } from './campaigns/campaigns.component';
     MaterialModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTooltipModule
   ],
   providers: [AuthGuard,
     {

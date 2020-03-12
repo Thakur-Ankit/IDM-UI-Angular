@@ -58,6 +58,10 @@ export class UsersComponent implements OnInit {
     };
   }
 
+  applyFilter(filterValue: string) {
+    this.customDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   navigate(location: string) {
     this.router.navigate([location]);
   }

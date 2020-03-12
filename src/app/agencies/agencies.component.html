@@ -24,4 +24,92 @@
 
 <div class="container">
 
+  <div class="row" style="margin-bottom: 10px;">
+    <div class="col" style="float: right">
+      <button class="newUserBtn" mat-flat-button>New Agency</button>
+    </div>
+  </div>
+
+  <div class="row dataRow">
+    <mat-toolbar class="userDetailToolBar">
+      <span class="userDetail">Agency Detail</span>
+    </mat-toolbar>
+
+    <div style="margin-top: 15px; width: 100%;">
+      <div style="width: 20%; margin-right: 20px; float: right;">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter a search key"
+               style="border: 1px solid #666699; padding: 4px;">
+      </div>
+    </div>
+
+    <div style="padding: 20px;">
+      <table id="SummaryTable" mat-table [dataSource]="customDataSource" matSort>
+
+        <ng-container matColumnDef="name">
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Agency</th>
+          <td class="hideExtra" mat-cell *matCellDef="let element" [matTooltip]="element.name">
+            {{element.name}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Id</th>
+          <td class="hideExtra" mat-cell *matCellDef="let element">
+            {{element.id}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="eligibleVisitors">
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Eligible Visitors</th>
+          <td class="hideExtra" mat-cell *matCellDef="let element">
+            {{element.eligibleVisitors}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="returningVisitors">
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Returning Visitors</th>
+          <td class="hideExtra" mat-cell *matCellDef="let element">
+            {{element.returningVisitors}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalMailersSent">
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Total Mailers Sent</th>
+          <td class="hideExtra" mat-cell *matCellDef="let element">
+            {{element.totalMailersSent}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="spend">
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Spend</th>
+          <td class="hideExtra" mat-cell *matCellDef="let element">
+            {{element.spend | currency: 'USD' : 'symbol' : '.2-2'}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cost">
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Cost</th>
+          <td class="hideExtra" mat-cell *matCellDef="let element">
+            {{element.cost | currency: 'USD' : 'symbol' : '.2-2'}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef> Edit</th>
+          <td mat-cell *matCellDef>
+            <mat-icon class="editIcon">edit</mat-icon>
+          </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <div class="float-right">
+        <mat-paginator color="primary" [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
+      </div>
+
+    </div>
+  </div>
 </div>

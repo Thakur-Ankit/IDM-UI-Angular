@@ -26,56 +26,66 @@
 
   <div class="row" style="margin-bottom: 10px;">
     <div class="col" style="float: right">
-      <button mat-flat-button style="background-color: #666699; color: #fff; float: right; font-size: 12px;">New User</button>
+      <button class="newUserBtn" mat-flat-button>New User</button>
     </div>
   </div>
 
-  <div class="row" style="border: 1px solid #666699;">
-    <mat-toolbar style="background-color: #666699; height: 35px;">
-      <span style="color: #fff; font-weight: 400; font-size: 16px;">User Detail</span>
+  <div class="row dataRow">
+    <mat-toolbar class="userDetailToolBar">
+      <span class="userDetail">User Detail</span>
     </mat-toolbar>
+
+    <div style="margin-top: 15px; width: 100%;">
+      <div style="width: 20%; margin-right: 20px; float: right;">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Enter a search key"
+               style="border: 1px solid #666699; padding: 4px;">
+      </div>
+    </div>
+
     <div style="padding: 20px;">
 
       <table id="SummaryTable" mat-table [dataSource]="customDataSource" matSort>
 
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #666699; color: white;"> User Id </th>
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> User Id</th>
           <td class="hideExtra" mat-cell *matCellDef="let element">
             {{element.id}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #666699; color: white;"> Name </th>
-          <td class="hideExtra" mat-cell *matCellDef="let element">
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+          <td class="hideExtra" mat-cell *matCellDef="let element" [matTooltip]="element.name">
             {{element.name}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #666699; color: white;"> Mail Id </th>
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Mail Id</th>
           <td class="hideExtra" mat-cell *matCellDef="let element">
             {{element.email}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="role">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #666699; color: white;"> Role </th>
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Role</th>
           <td class="hideExtra" mat-cell *matCellDef="let element">
             {{element.role}}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: #666699; color: white;"> Status </th>
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
           <td class="hideExtra" mat-cell *matCellDef="let element">
             {{ element.status ? 'Active' : 'InActive' }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="edit">
-          <th mat-header-cell *matHeaderCellDef style="background-color: #666699; color: white;"> Edit </th>
-          <td mat-cell *matCellDef><mat-icon style="font-size: 16px; cursor: pointer;">edit</mat-icon></td>
+          <th class="tableHeader" mat-header-cell *matHeaderCellDef> Edit</th>
+          <td mat-cell *matCellDef>
+            <mat-icon class="editIcon">edit</mat-icon>
+          </td>
         </ng-container>
 
 
@@ -84,11 +94,8 @@
       </table>
 
       <div class="float-right">
-        <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator color="primary" [pageSizeOptions]="[25, 50, 100]" showFirstLastButtons></mat-paginator>
       </div>
     </div>
   </div>
-
-
-
 </div>
