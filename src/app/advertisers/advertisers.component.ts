@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {AdvertiserService} from '../services/advertiser.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 export interface AdvertiserData {
   id: number;
@@ -30,7 +31,7 @@ export class AdvertisersComponent implements OnInit {
   advertiserData: AdvertiserData[] = [];
   customDataSource;
 
-  constructor(private router: Router, private advertiserService: AdvertiserService) {
+  constructor(private router: Router, private advertiserService: AdvertiserService, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
@@ -38,9 +39,11 @@ export class AdvertisersComponent implements OnInit {
   }
 
   getAdvertisers() {
+    this.spinner.show('advSpinner');
     this.advertiserService.getAdvertisers()
       .subscribe(
         response => {
+          this.spinner.hide('advSpinner');
           response.forEach(advertiser => {
             this.advertiserData.push(this.convertToAdvertiserData(advertiser));
           });
@@ -48,7 +51,10 @@ export class AdvertisersComponent implements OnInit {
           this.customDataSource.sort = this.sort;
           this.customDataSource.paginator = this.paginator;
         },
-        error => console.log('Error fetching advertiser dashboard data', error)
+        error => {
+          this.spinner.hide('advSpinner');
+          console.log('Error fetching advertiser dashboard data', error);
+        }
       );
   }
 

@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {UserService} from '../services/user.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 export interface UserData {
   id: number;
@@ -25,7 +26,7 @@ export class UsersComponent implements OnInit {
   customDataSource;
   userData: UserData[] = [];
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
@@ -33,9 +34,10 @@ export class UsersComponent implements OnInit {
   }
 
   getUsers() {
+    this.spinner.show('usersSpinner');
     this.userService.getUsers()
       .subscribe(res => {
-        console.log(res);
+        this.spinner.hide('usersSpinner');
         res.forEach(user => {
           this.userData.push(this.convertToUserData(user));
         });
@@ -43,6 +45,7 @@ export class UsersComponent implements OnInit {
         this.customDataSource.sort = this.sort;
         this.customDataSource.paginator = this.paginator;
       }, err => {
+        this.spinner.hide('usersSpinner');
         console.log(err);
         throw err;
       });

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ReportService} from '../services/report.service';
 import {Router} from '@angular/router';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-reports',
@@ -17,7 +18,7 @@ export class ReportsComponent implements OnInit {
     totalCost: null
   };
 
-  constructor(private reportService: ReportService, private router: Router) {
+  constructor(private reportService: ReportService, private router: Router, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
@@ -26,16 +27,21 @@ export class ReportsComponent implements OnInit {
   }
 
   fetchReportSummary() {
+    this.spinner.show('reportSpinner');
     this.reportService.fetchSummaryData()
       .subscribe(
         response => {
+          this.spinner.hide('reportSpinner');
           this.reportData.eligibleVisitors = response.totalVisit;
           this.reportData.returningVisitors = response.totalReturningVisits;
           this.reportData.totalSent = response.totalSent;
           this.reportData.totalSpent = response.totalSpent;
           this.reportData.totalCost = response.totalCost;
         },
-        error => console.log('Error fetching report summary', error)
+        error => {
+          this.spinner.hide('reportSpinner');
+          console.log('Error fetching report summary', error);
+        }
       );
   }
 

@@ -22,68 +22,76 @@
   </mat-toolbar>
 </div>
 
+<ngx-spinner name="reportSpinner" [fullScreen]="true" type="ball-spin-clockwise" size="medium"></ngx-spinner>
+
 <div class="container">
-  <div class="row-fluid">
-    <div class="row">
-      <div class="col-sm-2">
-        <div class="panel panel-default panelBorder">
-          <div class="panel-heading headingStyle">
-            <h5 class="panel-title headTitleStyle">Eligible Visitors</h5>
-          </div>
-          <div class="panel-body pannelBodyStyle">
-            <h3 *ngIf="reportData.eligibleVisitors == null">0</h3>
-            <h3>{{reportData.eligibleVisitors | number}}</h3>
-          </div>
+  <div class="row">
+    <div class="col-sm-2" style="padding-left: 0;">
+      <div class="panel panel-default panelBorder">
+        <div class="panel-heading headingStyle">
+          <h5 class="panel-title headTitleStyle">Eligible Visitors</h5>
+        </div>
+        <div class="panel-body pannelBodyStyle">
+          <h3 *ngIf="reportData.eligibleVisitors == null">0</h3>
+          <h3>{{reportData.eligibleVisitors | number}}</h3>
         </div>
       </div>
+    </div>
 
-      <div class="col-sm-2">
-        <div class="panel panel-default panelBorder">
-          <div class="panel-heading headingStyle">
-            <h5 class="panel-title headTitleStyle">Returning Visitors</h5>
-          </div>
-          <div class="panel-body pannelBodyStyle">
-            <h3 *ngIf="reportData.returningVisitors == null">0</h3>
-            <h3>{{reportData.returningVisitors | number}}</h3>
-          </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default panelBorder">
+        <div class="panel-heading headingStyle">
+          <h5 class="panel-title headTitleStyle">Returning Visitors</h5>
+        </div>
+        <div class="panel-body pannelBodyStyle">
+          <h3 *ngIf="reportData.returningVisitors == null">0</h3>
+          <h3>{{reportData.returningVisitors | number}}</h3>
         </div>
       </div>
+    </div>
 
-      <div class="col-sm-2">
-        <div class="panel panel-default panelBorder">
-          <div class="panel-heading headingStyle">
-            <h5 class="panel-title headTitleStyle">Total Sent</h5>
-          </div>
-          <div class="panel-body pannelBodyStyle">
-            <h3 *ngIf="reportData.totalSent == null">0</h3>
-            <h3>{{reportData.totalSent | number}}</h3>
-          </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default panelBorder">
+        <div class="panel-heading headingStyle">
+          <h5 class="panel-title headTitleStyle">Total Sent</h5>
+        </div>
+        <div class="panel-body pannelBodyStyle">
+          <h3 *ngIf="reportData.totalSent == null">0</h3>
+          <h3>{{reportData.totalSent | number}}</h3>
         </div>
       </div>
+    </div>
 
-      <div class="col-sm-3">
-        <div class="panel panel-default panelBorder">
-          <div class="panel-heading headingStyle">
-            <h5 class="panel-title headTitleStyle">Total Spent</h5>
-          </div>
-          <div class="panel-body pannelBodyStyle">
-            <h3 *ngIf="reportData.totalSpent == null">$ 0.0</h3>
-            <h3>{{reportData.totalSpent | currency}}</h3>
-          </div>
+    <div class="col-sm-3">
+      <div class="panel panel-default panelBorder">
+        <div class="panel-heading headingStyle">
+          <h5 class="panel-title headTitleStyle">Total Spent</h5>
+        </div>
+        <div class="panel-body pannelBodyStyle">
+          <h3 *ngIf="reportData.totalSpent == null">$ 0.0</h3>
+          <h3>{{reportData.totalSpent | currency}}</h3>
         </div>
       </div>
+    </div>
 
-      <div class="col-sm-3">
-        <div class="panel panel-default panelBorder">
-          <div class="panel-heading headingStyle">
-            <h5 class="panel-title headTitleStyle">Total Cost</h5>
-          </div>
-          <div class="panel-body pannelBodyStyle">
-            <h3 *ngIf="reportData.totalCost == null">$ 0.0</h3>
-            <h3>{{reportData.totalCost | currency}}</h3>
-          </div>
+    <div class="col-sm-3" style="padding-right: 0;">
+      <div class="panel panel-default panelBorder">
+        <div class="panel-heading headingStyle">
+          <h5 class="panel-title headTitleStyle">Total Cost</h5>
+        </div>
+        <div class="panel-body pannelBodyStyle">
+          <h3 *ngIf="reportData.totalCost == null">$ 0.0</h3>
+          <h3>{{reportData.totalCost | currency}}</h3>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="row" style="height: 450px; border: 1px solid #666699; margin-top: 20px;">
+    <mat-toolbar style="background-color: #666699; height: 35px;">
+      <span style="color: #fff; font-weight: 400; font-size: 16px;">Total Sent / Eligible Visitors</span>
+    </mat-toolbar>
+
+  </div>
+
 </div>

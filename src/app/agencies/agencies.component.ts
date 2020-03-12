@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {AgencyService} from '../services/agency.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 export interface AgencyData {
   id: number;
@@ -27,7 +28,7 @@ export class AgenciesComponent implements OnInit {
   customDataSource;
   agencyData: AgencyData[] = [];
 
-  constructor(private router: Router, private agencyService: AgencyService) {
+  constructor(private router: Router, private agencyService: AgencyService, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
@@ -35,9 +36,11 @@ export class AgenciesComponent implements OnInit {
   }
 
   getAgencies() {
+    this.spinner.show('agenciesSpinner');
     this.agencyService.getAgencies()
       .subscribe(
         response => {
+          this.spinner.hide('agenciesSpinner');
           response.forEach(agency => {
             this.agencyData.push(this.convertToAgencyData(agency));
           });
@@ -45,7 +48,10 @@ export class AgenciesComponent implements OnInit {
           this.customDataSource.sort = this.sort;
           this.customDataSource.paginator = this.paginator;
         },
-        error => console.log('Error fetching agency dashboard data', error)
+        error => {
+          this.spinner.hide('agenciesSpinner');
+          console.log('Error fetching agency dashboard data', error);
+        }
       );
   }
 

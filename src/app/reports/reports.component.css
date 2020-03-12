@@ -1,5 +1,6 @@
 .container {
   margin-top: 25px;
+  margin-bottom: 70px;
   background-color: white;
 }
 
@@ -27,6 +28,7 @@
 .headTitleStyle {
   color: #ffffff;
   margin-left: 5px;
+  font-weight: 400;
   font-size: 16px;
 }
 

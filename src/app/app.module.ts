@@ -17,6 +17,7 @@ import {AgenciesComponent} from './agencies/agencies.component';
 import {AdvertisersComponent} from './advertisers/advertisers.component';
 import {CampaignsComponent} from './campaigns/campaigns.component';
 import {MatTooltipModule} from '@angular/material';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatTooltipModule} from '@angular/material';
     NoopAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgxSpinnerModule
   ],
   providers: [AuthGuard,
     {

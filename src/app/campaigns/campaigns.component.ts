@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {CampaignService} from '../services/campaign.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 export interface CampaignData {
   id: number;
@@ -32,7 +33,7 @@ export class CampaignsComponent implements OnInit {
   campaignData: CampaignData[] = [];
   customDataSource;
 
-  constructor(private router: Router, private campaignService: CampaignService) {
+  constructor(private router: Router, private campaignService: CampaignService, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
@@ -40,9 +41,11 @@ export class CampaignsComponent implements OnInit {
   }
 
   getCampaigns() {
+    this.spinner.show('campaignSpinner');
     this.campaignService.getCampaigns()
       .subscribe(
         response => {
+          this.spinner.hide('campaignSpinner');
           response.forEach(campaign => {
             this.campaignData.push(this.convertToCampaignData(campaign));
           });
@@ -50,7 +53,10 @@ export class CampaignsComponent implements OnInit {
           this.customDataSource.sort = this.sort;
           this.customDataSource.paginator = this.paginator;
         },
-        error => console.log('Error fetching campaign dashboard data', error)
+        error => {
+          this.spinner.hide('campaignSpinner');
+          console.log('Error fetching campaign dashboard data', error);
+        }
       );
   }
 
