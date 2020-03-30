@@ -15,6 +15,14 @@ export class ReportService {
   }
 
   fetchGraphData() {
+    /*const filterData = {
+      start: '2020-03-10',
+      end: '2020-03-16',
+      productType: '-1',
+      agenciesIdsList: null,
+      advertisersIdsList: null,
+      campaignsIdsList: null
+    };*/
     return this.http.get<any>(URLs.REPORT_GRAPH);
   }
 }

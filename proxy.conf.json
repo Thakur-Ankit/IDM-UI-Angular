@@ -1,0 +1,8 @@
+{
+    "/api": {
+        "target": "http://dev.idm.upsnap.com",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

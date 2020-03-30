@@ -1,7 +1,7 @@
 export class URLs {
 
   // private static API_BASE = 'http://localhost:8080/api';
-  private static API_BASE = 'http://dev.idm.upsnap.com/api';
+  private static API_BASE = '/api';
 
   public static LOGIN = `${URLs.API_BASE}/login`;
 
