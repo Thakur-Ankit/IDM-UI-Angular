@@ -143,7 +143,7 @@ export class ReportsComponent implements OnInit {
   }
 
   setFilterDays(numberOfDays: number) {
-    console.log(numberOfDays);
+    this.chart.destroy();
     this.fetchReportGraph(numberOfDays);
   }
 
