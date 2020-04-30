@@ -92,13 +92,24 @@ export class ReportsComponent implements OnInit {
 
   getReportGraphChart(reportGraphData: ReportGraphData) {
     const option = {
-      legend: {display: false},
+      legend: {display: true},
       scales: {
         xAxes: [{gridLines: {display: false}}],
         yAxes: [
           {id: 'y-axis-0', position: 'left', gridLines: {display: false}},
           {id: 'y-axis-1', position: 'right', gridLines: {display: false}}
         ]
+      },
+      tooltips: {
+        callbacks: {
+          label(tooltipItem, data) {
+            const legend = [];
+            for (const i in data.datasets) {
+              legend.push(data.datasets[i].label + ': ' + parseFloat(data.datasets[i].data[tooltipItem.index]));
+            }
+            return legend;
+          }
+        }
       }
     };
     option.scales.xAxes[0].stacked = true;
@@ -109,21 +120,22 @@ export class ReportsComponent implements OnInit {
       options: option,
       data: {
         labels: reportGraphData.categories,
-        datasets: [this.createTotalSentChart(reportGraphData), this.createEligibleVistorsChart(reportGraphData)]
-      }
+        datasets: [this.createTotalSentChart(reportGraphData), this.createEligibleVistorsChart(reportGraphData),
+          {yAxisID: 'y-axis-1',  type: 'line', fill: false, backgroundColor: '#459918', data: reportGraphData.seriesMap.percent, label: 'Percent '}]
+      },
     });
   }
 
   createTotalSentChart(reportGraphData: ReportGraphData): object {
     let totalSent = [];
     totalSent = reportGraphData.seriesMap.TotalSent;
-    return {yAxisID: 'y-axis-0', backgroundColor: '#2196F3', data: totalSent};
+    return {yAxisID: 'y-axis-0', backgroundColor: '#8d6899', data: totalSent, label: 'Total Sent '};
   }
 
   createEligibleVistorsChart(reportGraphData: ReportGraphData): object {
     let eligibleVisitors = [];
     eligibleVisitors = reportGraphData.seriesMap.TotalVisits;
-    return {yAxisID: 'y-axis-0', backgroundColor: '#4caf50', data: eligibleVisitors};
+    return {yAxisID: 'y-axis-0', backgroundColor: '#2196F3', data: eligibleVisitors, label: 'Eligible Visitors '};
   }
 
   navigate(location: string) {
