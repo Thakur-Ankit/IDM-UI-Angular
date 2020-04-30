@@ -22,6 +22,24 @@
   </mat-toolbar>
 </div>
 
+<div class="row" style="margin-bottom: 10px; margin-top: 20px; margin-right: 80px;">
+  <div class="col" style="float: right" [mat-menu-trigger-for]="filterMenu">
+    <button class="filterBtn" mat-flat-button>Filter</button>
+  </div>
+</div>
+
+<mat-menu class="headerMenu" #filterMenu="matMenu">
+  <div style="top:65px; left:0; width: 250px;">
+    <a class="menuItemLink" mat-menu-item (click)="setFilterDays(7);">Last 1 Week</a>
+    <a class="menuItemLink" mat-menu-item (click)="setFilterDays(14);">Last 2 Weeks</a>
+    <a class="menuItemLink" mat-menu-item (click)="setFilterDays(30);">Last 30 Days</a>
+    <a class="menuItemLink" mat-menu-item (click)="setFilterDays(91);">Last 3 Months</a>
+    <a class="menuItemLink" mat-menu-item (click)="setFilterDays(183);">Last 6 Months</a>
+    <a class="menuItemLink" mat-menu-item (click)="setFilterDays(365);">Last 1 Year</a>
+  </div>
+</mat-menu>
+
+
 <ngx-spinner name="reportSpinner" [fullScreen]="true" type="ball-spin-clockwise" size="medium"></ngx-spinner>
 
 <div class="container">
@@ -93,6 +111,7 @@
     </mat-toolbar>
 
     <div id="chartContainer" style="background-color: white; padding: 20px; width: 100%;">
+      <ngx-spinner name="reportGraphSpinner" [fullScreen]="true" type="ball-spin-clockwise" size="medium"></ngx-spinner>
       <canvas #totalEligibleChart height="100">{{ chart }}</canvas>
     </div>
 

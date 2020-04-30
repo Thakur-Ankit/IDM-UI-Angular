@@ -37,7 +37,7 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit() {
     this.fetchReportSummary();
-    this.fetchReportGraph();
+    this.fetchReportGraph(null);
   }
 
   fetchReportSummary() {
@@ -59,10 +59,12 @@ export class ReportsComponent implements OnInit {
       );
   }
 
-  fetchReportGraph() {
+  fetchReportGraph(numberOfDays: number) {
+    this.spinner.show('reportGraphSpinner');
     this.reportService.fetchGraphData()
       .subscribe(
         (response: ReportGraphData) => {
+          this.spinner.hide('reportGraphSpinner');
           console.log(response);
           this.reportGraphData = response;
           console.log('Report graph fetched successfully!');
@@ -72,7 +74,11 @@ export class ReportsComponent implements OnInit {
           const newTotalSent: Array<string> = [];
           const newTotalVisits: Array<string> = [];
           const newPercent: Array<string> = [];
-          for (let i = length - 30; i <= length - 1; i++) {
+          let filterDaysValue = 30;
+          if (numberOfDays != null) {
+            filterDaysValue = numberOfDays;
+          }
+          for (let i = length - filterDaysValue; i <= length - 1; i++) {
             newCategories.push(this.reportGraphData.categories[i]);
             newTotalSent.push(this.reportGraphData.seriesMap.TotalSent[i]);
             newTotalVisits.push(this.reportGraphData.seriesMap.TotalVisits[i]);
@@ -94,10 +100,10 @@ export class ReportsComponent implements OnInit {
     const option = {
       legend: {display: true},
       scales: {
-        xAxes: [{gridLines: {display: false}}],
+        xAxes: [{gridLines: {display: false}, stacked: true}],
         yAxes: [
-          {id: 'y-axis-0', position: 'left', gridLines: {display: false}},
-          {id: 'y-axis-1', position: 'right', gridLines: {display: false}}
+          {id: 'y-axis-0', position: 'left', gridLines: {display: false}, stacked: true},
+          {id: 'y-axis-1', position: 'right', gridLines: {display: false}, stacked: true}
         ]
       },
       tooltips: {
@@ -112,16 +118,14 @@ export class ReportsComponent implements OnInit {
         }
       }
     };
-    option.scales.xAxes[0].stacked = true;
-    option.scales.yAxes[0].stacked = true;
-    option.scales.yAxes[1].stacked = true;
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: 'bar',
       options: option,
       data: {
         labels: reportGraphData.categories,
         datasets: [this.createTotalSentChart(reportGraphData), this.createEligibleVistorsChart(reportGraphData),
-          {yAxisID: 'y-axis-1',  type: 'line', fill: false, backgroundColor: '#459918', data: reportGraphData.seriesMap.percent, label: 'Percent '}]
+          { yAxisID: 'y-axis-1',  type: 'line', fill: false, backgroundColor: '#459918',
+            data: reportGraphData.seriesMap.percent, label: 'Percent '}]
       },
     });
   }
@@ -136,6 +140,11 @@ export class ReportsComponent implements OnInit {
     let eligibleVisitors = [];
     eligibleVisitors = reportGraphData.seriesMap.TotalVisits;
     return {yAxisID: 'y-axis-0', backgroundColor: '#2196F3', data: eligibleVisitors, label: 'Eligible Visitors '};
+  }
+
+  setFilterDays(numberOfDays: number) {
+    console.log(numberOfDays);
+    this.fetchReportGraph(numberOfDays);
   }
 
   navigate(location: string) {

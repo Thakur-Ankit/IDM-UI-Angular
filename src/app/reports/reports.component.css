@@ -41,3 +41,15 @@
   background-color: white;
   color: #666699;
 }
+
+.filterBtn {
+  background-color: #666699;
+  color: #fff;
+  float: right;
+  font-size: 12px;
+}
+
+.menuItemLink {
+  text-decoration: none;
+  width: 100%;
+}
