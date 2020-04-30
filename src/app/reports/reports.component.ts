@@ -106,7 +106,7 @@ export class ReportsComponent implements OnInit {
           {id: 'y-axis-1', position: 'right', gridLines: {display: false}, stacked: true}
         ]
       },
-      tooltips: {
+      /*tooltips: {
         callbacks: {
           label(tooltipItem, data) {
             const legend = [];
@@ -116,7 +116,7 @@ export class ReportsComponent implements OnInit {
             return legend;
           }
         }
-      }
+      },*/
     };
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: 'bar',
