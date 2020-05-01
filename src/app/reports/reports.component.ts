@@ -114,7 +114,8 @@ export class ReportsComponent implements OnInit {
               legend.push(data.datasets[i].label + ': ' + parseFloat(data.datasets[i].data[tooltipItem.index]));
             }
             return legend;
-          }
+          },
+          shared: true
         }
       },*/
     };
@@ -123,9 +124,9 @@ export class ReportsComponent implements OnInit {
       options: option,
       data: {
         labels: reportGraphData.categories,
-        datasets: [this.createTotalSentChart(reportGraphData), this.createEligibleVistorsChart(reportGraphData),
-          { yAxisID: 'y-axis-1',  type: 'line', fill: false, backgroundColor: '#459918',
-            data: reportGraphData.seriesMap.percent, label: 'Percent '}]
+        datasets: [{ yAxisID: 'y-axis-1',  type: 'line', fill: false, backgroundColor: '#7cb5ec',
+          data: reportGraphData.seriesMap.percent, label: 'Percent '}, this.createTotalSentChart(reportGraphData),
+          this.createEligibleVistorsChart(reportGraphData)]
       },
     });
   }
@@ -133,13 +134,13 @@ export class ReportsComponent implements OnInit {
   createTotalSentChart(reportGraphData: ReportGraphData): object {
     let totalSent = [];
     totalSent = reportGraphData.seriesMap.TotalSent;
-    return {yAxisID: 'y-axis-0', backgroundColor: '#8d6899', data: totalSent, label: 'Total Sent '};
+    return {yAxisID: 'y-axis-0', backgroundColor: '#666699', data: totalSent, label: 'Total Sent '};
   }
 
   createEligibleVistorsChart(reportGraphData: ReportGraphData): object {
     let eligibleVisitors = [];
     eligibleVisitors = reportGraphData.seriesMap.TotalVisits;
-    return {yAxisID: 'y-axis-0', backgroundColor: '#2196F3', data: eligibleVisitors, label: 'Eligible Visitors '};
+    return {yAxisID: 'y-axis-0', backgroundColor: '#8d6899', data: eligibleVisitors, label: 'Eligible Visitors '};
   }
 
   setFilterDays(numberOfDays: number) {
